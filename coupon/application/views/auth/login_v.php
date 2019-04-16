@@ -1,4 +1,4 @@
-<article id="coupon_area">
+<article id="board_area">
     <header><h1></h1></header>
 <?php
     $attributes = array(
@@ -19,7 +19,7 @@
             <label class="control-label" for="input2">비밀번호</label>
             <div class="controls">
                 <input type="password" class="input-xlarge" id="input2" name="password"
-                    value="<?php echo set_value('pass'); ?>" />
+                    value="<?php echo set_value('password'); ?>" />
                 <p class="help-block"></p>
             </div>
             <div class="controls">

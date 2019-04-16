@@ -6,7 +6,7 @@ Class Auth_m extends CI_Model {
     function __construct() {
         parent::__construct();
     }
- 
+
     /**
      * 아이디 비밀번호 체크
      *
@@ -14,7 +14,7 @@ Class Auth_m extends CI_Model {
      * @return array
      */
     function login($auth) {
-        $sql = "SELECT username, pass FROM users WHERE username = '" . $auth['username'] . "' AND password = '" . $auth['password'] . "' ";
+        $sql = "SELECT username, email FROM users WHERE username = '" . $auth['username'] . "' AND password = '" . $auth['password'] . "' ";
 
         $query = $this -> db -> query($sql);
 

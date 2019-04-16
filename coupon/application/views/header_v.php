@@ -16,12 +16,19 @@
                         Frame work : CodeIgniter / Writer : KyungRyeol
                     </p>
                     <small>실행 예제</small>
+                    <p>
+<?php
+    if ( @$this -> session -> userdata('logged_in') == TRUE) {
+?>
+<?php echo $this -> session -> userdata('username');?> 님 환영합니다. <a href="/coupon/index.php/auth/logout" class="btn">로그아웃</a>
+<?php
+    } else {
+?>
+<a href="/coupon/index.php/auth/login" class="btn btn-primary"> 로그인 </a>
+<?php
+    }
+?>
+                    </p>
+
                 </blockquote>
             </header>
-            <nav id="gnb">
-                <ul>
-                    <li>
-                        <a rel="external" href="/bbs/<?php echo $this -> uri -> segment(1); ?>/lists/<?php echo $this -> uri -> segment(3); ?>"> 쿠폰 프로젝트 </a>
-                    </li>
-                </ul>
-            </nav>

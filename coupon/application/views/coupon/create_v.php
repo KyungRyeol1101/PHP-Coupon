@@ -23,21 +23,6 @@
     </head>
     <body>
         <div id="main">
-            <header id="header" data-role="header" data-position="fixed">
-                <blockquote>
-                    <p>
-                        Frame work : CodeIgniter
-                    </p>
-                    <small>실행 예제</small>
-                </blockquote>
-            </header>
-            <nav id="gnb">
-                <ul>
-                    <li>
-                        <a rel="external" href="/test/<?php echo $this -> uri -> segment(1); ?>/lists/<?php echo $this -> uri -> segment(3); ?>"> 쿠폰 프로젝트 </a>
-                    </li>
-                </ul>
-            </nav>
             <article id="board_area">
                 <header>
                     <h1></h1>
@@ -48,7 +33,7 @@
                             쿠폰 생성
                         </legend>
                         <div class="control-group">
-                            <label class="control-label" for="input01">쿠폰 번호 (3자리)</label>
+                            <label class="control-label" for="input">쿠폰 번호 (3자리)</label>
                             <div class="controls">
                                 <input type="text" class="input-xlarge" id="input" name="coupon_num">
                                 <p class="help-block">
@@ -67,13 +52,6 @@
                     </fieldset>
                 </form>
             </article>
-            <footer id="footer">
-                <dl>
-                    <dd>
-                        Copyright by <em class="black">KyungRyeol</em>.
-                    </dd>
-                </dl>
-            </footer>
         </div>
     </body>
 </html>

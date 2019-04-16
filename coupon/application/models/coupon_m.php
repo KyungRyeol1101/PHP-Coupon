@@ -1,7 +1,7 @@
 <?php
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
-
+ini_set("MEMORY","256M");
 /**
  * 공통 게시판 모델
  */
@@ -32,44 +32,42 @@ class Coupon_m extends CI_Model {
     }
 
     function insert_coupon($arrays) {
-      $arr_no=array("1","2","3","4","5","6","7","8","9","0");
-      $arr_alphabet=array("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z");
+      $chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+      $group_sql = "SELECT group_coupon FROM coupons ORDER BY coupon_id DESC limit 1";
+      $group_query = $this -> db -> query($group_sql);
+      $group_result = $group_query -> result();
 
-      $i = 0;
-      while ($i <= 10){
-        $str = "";
+      $s = 0;
+      while ($s < 100000){
+        $str = "$arrays";
 
         for($i = 3; $i < 16; $i++){
-          if(rand(0,1) == 0) {
-            $str.=rand(0, count($arr_no));
-          }else{
-            $str.=rand(0, count($arr_alphabet));
-          }
+          $str .= $chars[rand(0, strlen($chars)-1)];
+        }
           // 해당 번호가 DB 있는 중복번호인가 체크
 
-         $query = "select count(coupon_id) from coupons where coupon_num='".$str."'";
-         //$result = mysql_query($query, $dbconn);
-         $result = $this->db->select($arrays['table']), $query);
-         $col = mysql_fetch_row($result);
+         $sql = "SELECT count(coupon_id) FROM coupons WHERE coupon_num='".$str."'";
+         $query = $this-> db -> query($sql);
+         $result = $query->num_rows();
 
          // 중복번호가 아니라면 DB 에 넣음
-         if ($col[0]==0) {
+         if (true) {
            $insert_array = array(
                        'coupon_num' => $str,
+                       'user' => '홍길동',
                        'created_on' => date("Y-m-d H:i:s"),
                        'use_date' => date("Y-m-d H:i:s"),
                        'group_coupon' => 'A',
-                       'used' => '1'
-                   );
-
-             $result = $this->db->insert($arrays['table'], $insert_array);
-
-             return $result;
+                       'used' => '0'
+            );
+            $result = $this-> db -> insert('coupons', $insert_array);
+            $s++;
          }
          // 중복번호라면 다시
-         else continue;
+         else{
+           continue;
+         }
        }
+       return $result;
     }
-  }
-
 }

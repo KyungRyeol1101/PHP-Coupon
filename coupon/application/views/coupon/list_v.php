@@ -11,8 +11,8 @@
                 <th scope="col">사용자</th>
                 <th scope="col">생성일자</th>
                 <th scope="col">사용일자</th>
-                <th scope="col">쿠폰 그룹</th>
-                <th scope="col">사용 유무</th>
+                <th scope="col">그룹</th>
+                <th scope="col">사용유무</th>
             </tr>
         </thead>
         <tbody>
@@ -48,4 +48,10 @@ foreach($list as $lt)
             </tr>
         </tfoot>
     </table>
+    <div>
+        <form id="bd_search" method="post">
+            <input type="text" name="search_word" id="q" onkeypress="board_search_enter(document.q);" />
+            <input type="button" value="검색" id="search_btn" />
+        </form>
+    </div>
 </article>

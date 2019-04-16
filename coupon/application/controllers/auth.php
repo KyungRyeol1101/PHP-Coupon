@@ -52,15 +52,16 @@ class Auth extends CI_Controller {
             if ($result) {
                 $newdata = array(
                     'username' => $result -> username,
+                    'email' => $result -> email,
                     'logged_in' => TRUE
                 );
 
                 $this -> session -> set_userdata($newdata);
 
-                alert('로그인 되었습니다.', '/bbs/board/lists/ci_board/page/1');
+                alert('로그인 되었습니다.', '/coupon/index.php/coupon/lists/coupon/page/1');
                 exit;
             } else {
-                alert('아이디나 비밀번호를 확인해 주세요.', '/bbs/board/lists/ci_board/page/1');
+                alert('아이디나 비밀번호를 확인해 주세요.', '/coupon/index.php/coupon/lists/coupon/page/1');
                 exit;
             }
         } else {
@@ -74,7 +75,7 @@ class Auth extends CI_Controller {
         $this -> session -> sess_destroy();
 
         echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />';
-        alert('로그아웃 되었습니다.', '/bbs/board/lists/ci_board/page/1');
+        alert('로그아웃 되었습니다.', '/coupon/index.php/coupon/lists/coupon/page/1');
         exit;
 
     }
