@@ -14,7 +14,7 @@ class Coupon extends CI_Controller
         $this -> lists();
     }
     /**
-         * 사이트 헤더, 푸터가 자동으로 추가된다.
+         * 사이트 head, foot 자동추가
     */
     public function _remap($method) {
       // 헤더 include
@@ -63,24 +63,28 @@ class Coupon extends CI_Controller
     public function create()
     {
       echo '<meta http-equiv="content-type" content="text/html; charset=utf-8" />';
+      if(@this -> session -> userdata('logged_in') == TRUE){
+        if ($_POST) {
+            $this -> load -> helper('alert');
 
-      if ($_POST) {
-          $this -> load -> helper('alert');
+            $write_data =  $this -> input -> post('coupon_num', TRUE);
 
-          $write_data =  $this -> input -> post('coupon_num', TRUE);
+            $result = $this -> coupon_m -> insert_coupon($write_data);
 
-          $result = $this -> coupon_m -> insert_coupon($write_data);
-
-          if ($result) {
-              alert("입력되었습니다.",'/coupon/index.php/coupon/lists/'.$this->uri->segment(3).'/page/'.$pages);
-              exit;
-          } else {
-              alert("다시 입력해주세요.",'/coupon/index.php/coupon/lists/'.$this->uri->segment(3).'/page/'.$pages);
-              exit;
-          }
-      } else {
-          // 생성 폼 view 호출
-          $this->load->view('coupon/create_v');
+            if ($result) {
+                alert("입력되었습니다.",'/coupon/index.php/coupon/lists/'.$this->uri->segment(3).'/page/'.$pages);
+                exit;
+            } else {
+                alert("다시 입력해주세요.",'/coupon/index.php/coupon/lists/'.$this->uri->segment(3).'/page/'.$pages);
+                exit;
+            }
+        } else {
+            // 생성 폼 view 호출
+            $this->load->view('coupon/create_v');
+        }
+      }else{
+        alert('로그인 후 작성하세요', '/copon/auth/login/');
+        exit;
       }
     }
 }

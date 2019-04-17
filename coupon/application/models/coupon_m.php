@@ -2,9 +2,6 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 ini_set("MEMORY","256M");
-/**
- * 공통 게시판 모델
- */
 
 class Coupon_m extends CI_Model {
     function __construct() {
