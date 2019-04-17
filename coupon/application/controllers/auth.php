@@ -2,10 +2,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-/**
- * 사용자 인증 컨트롤러
- */
-
+// 사용자 인증
 class Auth extends CI_Controller {
 
     function __construct() {
@@ -28,9 +25,7 @@ class Auth extends CI_Controller {
         $this -> load -> view('footer_v');
     }
 
-    /**
-     * 로그인 처리
-     */
+    //로그인 처리
     public function login() {
         $this -> load -> library('form_validation');
 
@@ -77,7 +72,5 @@ class Auth extends CI_Controller {
         echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />';
         alert('로그아웃 되었습니다.', '/coupon/index.php/coupon/lists/coupon/page/1');
         exit;
-
     }
-
 }

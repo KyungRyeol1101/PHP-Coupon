@@ -54,7 +54,7 @@ class Coupon_m extends CI_Model {
                        'user' => '홍길동',
                        'created_on' => date("Y-m-d H:i:s"),
                        'use_date' => date("Y-m-d H:i:s"),
-                       'group_coupon' => 'A',
+                       'group_coupon' => $group_result+1,
                        'used' => '0'
             );
             $result = $this-> db -> insert('coupons', $insert_array);
